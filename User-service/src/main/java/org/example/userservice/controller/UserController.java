@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import org.example.userservice.models.UserUpdateDTO;
 import org.example.userservice.service.UserService;
 import org.example.userservice.models.User;
 import org.example.userservice.models.UserRegistrationDTO;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/users")
@@ -28,8 +30,15 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "hello";
+    @GetMapping("{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable("userId") Long userId){
+       return userService.getUserById(userId);
     }
+
+    @PutMapping("{userId}")
+    public ResponseEntity<User> updateUser(@PathVariable("userId") Long userId, @RequestBody UserUpdateDTO user){
+       return userService.updateUser(userId, user);
+    }
+
+    // TODO: add patch mapping for partial updates, add delete mapping
 }

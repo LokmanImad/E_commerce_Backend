@@ -42,9 +42,12 @@ public class UserController {
     }
 
     @DeleteMapping("{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("userId") Long userId){
+    public ResponseEntity<User> deleteUser(@PathVariable("userId") Long userId){
        return userService.deleteUser(userId);
-
     }
-    // TODO: add patch mapping for partial updates
+
+    @PatchMapping("{userId}")
+    public ResponseEntity<User> updateUserPassword(@PathVariable("userId") Long userId, @RequestParam(defaultValue = "password123") String password){
+       return userService.updateUserPassword(userId, password);
+    }
 }

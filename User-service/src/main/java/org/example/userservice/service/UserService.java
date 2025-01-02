@@ -62,14 +62,26 @@ public class UserService {
         return ResponseEntity.ok(updatedUser);
     }
 
-    public ResponseEntity<Void> deleteUser(Long userId) {
+    public ResponseEntity<User> deleteUser(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
         userRepository.deleteById(userId);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(userOptional.get());
     }
 
+    public ResponseEntity<User> updateUserPassword(Long userId, String newPassword) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if(optionalUser.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        User existingUser = optionalUser.get();
+        existingUser.setPassword(newPassword);
+
+        userRepository.save(existingUser);
+
+        return ResponseEntity.accepted().body(existingUser);
+    }
 }

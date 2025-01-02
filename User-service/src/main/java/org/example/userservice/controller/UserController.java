@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import jakarta.validation.Valid;
 import org.example.userservice.models.UserUpdateDTO;
 import org.example.userservice.service.UserService;
 import org.example.userservice.models.User;
@@ -40,5 +41,10 @@ public class UserController {
        return userService.updateUser(userId, user);
     }
 
-    // TODO: add patch mapping for partial updates, add delete mapping
+    @DeleteMapping("{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") Long userId){
+       return userService.deleteUser(userId);
+
+    }
+    // TODO: add patch mapping for partial updates
 }

@@ -23,9 +23,7 @@ public class User {
     private String firstname;
     private String lastname;
     private Role role ;
-    @Email
     private String email;
-    @Range(min = 12, max = 120)
     private int age;
     private String password;
     private String address;

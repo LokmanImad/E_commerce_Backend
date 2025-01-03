@@ -46,8 +46,8 @@ public class UserController {
        return userService.deleteUser(userId);
     }
 
-    @PatchMapping("{userId}")
-    public ResponseEntity<User> updateUserPassword(@PathVariable("userId") Long userId, @RequestParam(defaultValue = "password123") String password){
+    @PatchMapping("/{userId}/resetPassword")
+    public ResponseEntity<User> updateUserPassword(@PathVariable("userId") Long userId, @RequestParam(defaultValue = "password") String password){
        return userService.updateUserPassword(userId, password);
     }
 }

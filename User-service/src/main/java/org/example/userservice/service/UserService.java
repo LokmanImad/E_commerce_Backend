@@ -82,6 +82,6 @@ public class UserService {
 
         userRepository.save(existingUser);
 
-        return ResponseEntity.accepted().body(existingUser);
+        return ResponseEntity.ok(existingUser);
     }
 }

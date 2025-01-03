@@ -8,5 +8,5 @@ public record UserRegistrationDTO(
         @NotBlank String lastname,
         @Email String email )
 {
-    // TODO: Add other important fields during user registration }
+    // TODO: Add other important fields during user registration
 }

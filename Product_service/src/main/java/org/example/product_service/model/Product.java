@@ -24,8 +24,4 @@ public class Product {
     private String categories;
     private String image;
     private double promo;
-
-
-
-
 }

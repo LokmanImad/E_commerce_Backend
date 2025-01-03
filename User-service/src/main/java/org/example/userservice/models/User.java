@@ -1,9 +1,7 @@
 package org.example.userservice.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.hibernate.validator.constraints.Range;
 
 @Entity @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
@@ -22,7 +20,7 @@ public class User {
     private Long id;
     private String firstname;
     private String lastname;
-    private Role role ;
+    private Role role;
     private String email;
     private int age;
     private String password;

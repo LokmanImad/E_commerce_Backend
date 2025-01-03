@@ -88,6 +88,19 @@ services:
     networks:
       - postgres
 
+  order-service:
+    build: ./Order_serivce
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - postgres
+
 networks:
   postgres:
     driver: bridge

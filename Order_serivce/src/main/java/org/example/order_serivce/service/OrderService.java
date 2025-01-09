@@ -2,6 +2,7 @@ package org.example.order_serivce.service;
 
 import org.example.order_serivce.model.Order;
 import org.example.order_serivce.model.OrderDTO;
+import org.example.order_serivce.model.OrderState;
 import org.example.order_serivce.model.OrderStateUpdateDTO;
 import org.example.order_serivce.repository.OrderRepository;
 import org.springframework.http.ResponseEntity;
@@ -64,14 +65,21 @@ public class OrderService {
         return ResponseEntity.ok(order);
     }
 
-    public ResponseEntity<Order> updateOrderState(Long orderId, OrderStateUpdateDTO dto){
+    public ResponseEntity<Order> updateOrderState(Long orderId, String state){
         Optional<Order> optionalOrder = orderRepository.findById(orderId);
         if(optionalOrder.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         Order existingOrder = optionalOrder.get();
-        existingOrder.setOrderState(dto.orderState());
-
+        existingOrder.setOrderState(
+                switch(state) {
+                    case "Confirmed" -> OrderState.CONFIRMED;
+                    case "Delivering" -> OrderState.DELIVERING;
+                    case "Delivered" -> OrderState.DELIVERED;
+                    case "Cancelled" -> OrderState.CANCELLED;
+                    default -> OrderState.PROCESSING;
+                }
+        );
         return ResponseEntity.accepted().body(existingOrder);
     }
 }

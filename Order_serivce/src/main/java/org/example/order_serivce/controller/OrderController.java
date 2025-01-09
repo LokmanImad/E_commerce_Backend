@@ -44,7 +44,7 @@ public class OrderController {
     }
 
     @PatchMapping("{orderId}")
-    public ResponseEntity<Order> updateOrderState(@PathVariable("orderId") Long orderId, OrderStateUpdateDTO dto){
-        return orderService.updateOrderState(orderId, dto);
+    public ResponseEntity<Order> updateOrderState(@PathVariable("orderId") Long orderId, @RequestParam String state){
+        return orderService.updateOrderState(orderId, state);
     }
 }

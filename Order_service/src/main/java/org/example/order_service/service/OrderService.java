@@ -1,10 +1,9 @@
-package org.example.order_serivce.service;
+package org.example.order_service.service;
 
-import org.example.order_serivce.model.Order;
-import org.example.order_serivce.model.OrderDTO;
-import org.example.order_serivce.model.OrderState;
-import org.example.order_serivce.model.OrderStateUpdateDTO;
-import org.example.order_serivce.repository.OrderRepository;
+import org.example.order_service.model.Order;
+import org.example.order_service.model.OrderDTO;
+import org.example.order_service.model.OrderState;
+import org.example.order_service.repository.OrderRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +79,8 @@ public class OrderService {
                     default -> OrderState.PROCESSING;
                 }
         );
+
+        orderRepository.save(existingOrder);
         return ResponseEntity.accepted().body(existingOrder);
     }
 }

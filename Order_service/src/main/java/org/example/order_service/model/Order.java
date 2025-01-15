@@ -1,14 +1,11 @@
-package org.example.order_serivce.model;
+package org.example.order_service.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 
 @Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder

@@ -1,9 +1,8 @@
-package org.example.order_serivce.controller;
+package org.example.order_service.controller;
 
-import org.example.order_serivce.model.Order;
-import org.example.order_serivce.model.OrderDTO;
-import org.example.order_serivce.model.OrderStateUpdateDTO;
-import org.example.order_serivce.service.OrderService;
+import org.example.order_service.model.Order;
+import org.example.order_service.model.OrderDTO;
+import org.example.order_service.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

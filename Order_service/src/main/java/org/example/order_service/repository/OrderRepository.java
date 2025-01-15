@@ -1,6 +1,6 @@
-package org.example.order_serivce.repository;
+package org.example.order_service.repository;
 
-import org.example.order_serivce.model.Order;
+import org.example.order_service.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

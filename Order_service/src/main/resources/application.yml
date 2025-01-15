@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Order_serivce
+    name: order-service
   datasource:
     url: jdbc:postgresql://localhost:5432/order
     username: admin
@@ -25,7 +25,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery-service:8761/eureka
   instance:
     prefer-ip-address: true
 

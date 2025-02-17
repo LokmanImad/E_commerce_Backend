@@ -1,4 +1,4 @@
-package org.example.product_service.model;
+package org.example.productservice.model;
 
 public record ProductDto(
         String name,

@@ -1,21 +1,26 @@
-package org.example.product_service.controller;
+package org.example.productservice.controller;
 
 
 import lombok.AllArgsConstructor;
-import org.example.product_service.model.Product;
-import org.example.product_service.model.ProductDto;
-import org.example.product_service.model.ProductUpdateDto;
-import org.example.product_service.service.ProductService;
+import org.example.productservice.model.Product;
+import org.example.productservice.model.ProductDto;
+import org.example.productservice.model.ProductUpdateDto;
+import org.example.productservice.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("api/v1/products")
 public class ProductController {
     private final ProductService productService;
+
+    @Autowired
+    public ProductController(ProductService productService){
+        this.productService = productService;
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProduct(){

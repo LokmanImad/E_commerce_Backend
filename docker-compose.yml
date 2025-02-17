@@ -36,6 +36,8 @@ services:
       - "8761:8761"
     networks:
       - postgres
+    depends_on:
+      - postgres
 
   gateway-service:
     build: ./Gateway_service
@@ -48,6 +50,9 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     networks:
       - postgres
+    depends_on:
+      - postgres
+      - discovery-service
 
   user-service:
     build: ./User-service
@@ -60,6 +65,9 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     networks:
       - postgres
+    depends_on:
+      - postgres
+      - discovery-service
 
   order-service:
     build: ./Order_service
@@ -72,6 +80,24 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
     networks:
       - postgres
+    depends_on:
+      - postgres
+      - discovery-service
+
+  product-service:
+    build: ./Product_service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/product
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: password
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka
+    networks:
+      - postgres
+    depends_on:
+      - postgres
+      - discovery-service
 
 networks:
   postgres:

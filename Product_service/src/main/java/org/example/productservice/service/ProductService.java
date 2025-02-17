@@ -1,10 +1,11 @@
-package org.example.product_service.service;
+package org.example.productservice.service;
 
 import lombok.AllArgsConstructor;
-import org.example.product_service.model.Product;
-import org.example.product_service.model.ProductDto;
-import org.example.product_service.model.ProductUpdateDto;
-import org.example.product_service.repository.ProductRepository;
+import org.example.productservice.model.Product;
+import org.example.productservice.model.ProductDto;
+import org.example.productservice.model.ProductUpdateDto;
+import org.example.productservice.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productRepository.findAll());
@@ -78,6 +83,7 @@ public class ProductService {
 
         Product existingProduct = productOptional.get();
         existingProduct.setPromo(productUpdateDto.promo());
+        productRepository.save(existingProduct);
 
         return ResponseEntity.accepted().body(existingProduct);
     }
